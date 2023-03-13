@@ -10,7 +10,7 @@ interface SessionProviderProps {
   session: Session | null;
 }
 
-const SessionProvider: FC<SessionProviderProps> = ({ children, session }) => {
+const SessionProvider = ({ children, session }: SessionProviderProps) => {
   return <Provider>{children}</Provider>;
 };
 
