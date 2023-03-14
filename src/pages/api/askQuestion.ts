@@ -1,5 +1,8 @@
 import query from "@/lib/queryApi";
+import { serverTimestamp } from "firebase/firestore";
 import type { NextApiRequest, NextApiResponse } from "next";
+import admin from "firebase-admin";
+import { adminDb } from "../../../firebaseAdmin";
 
 type Data = {
   answer: string;
@@ -19,7 +22,23 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 
   const message: Message = {
     text: response || "Chat GPT was unable to find an answer for that",
+    createdAt: admin.firestore.Timestamp.now(),
+    user: {
+      _id: "ChatGPT",
+      name: "ChatGPT",
+      avatar: "/ChatGPT-Icon-Logo-PNG.png",
+    },
   };
+
+  await adminDb
+    .collection("users")
+    .doc(session?.user?.email)
+    .collection("chats")
+    .doc(chatId)
+    .collection("messages")
+    .add(message);
+
+  res.status(200).json({ answer: message.text });
 };
 
 export default handler;
