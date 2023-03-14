@@ -64,7 +64,7 @@ const ChatInput: FC<ChatInputProps> = ({ id }) => {
   };
 
   return (
-    <div className='bg-gray-700/50 text-gray-400 rounded-lg text-sm '>
+    <div className='bg-gray-700/50 text-gray-400 rounded-lg text-sm m-2'>
       <form onSubmit={(e) => sendMessage(e)} className='p-5 space-x-5 flex'>
         <input
           value={prompt}

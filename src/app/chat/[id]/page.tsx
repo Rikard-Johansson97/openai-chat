@@ -8,7 +8,7 @@ interface pageProps {
 
 const page: FC<pageProps> = ({ params: { id } }) => {
   return (
-    <div className='flex flex-col h-screen overflow-y-hidden p-2'>
+    <div className='flex flex-col h-screen overflow-y-hidden'>
       <Chat id={id} />
       <ChatInput id={id} />
     </div>

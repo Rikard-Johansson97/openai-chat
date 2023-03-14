@@ -1,7 +1,6 @@
 import query from "@/lib/queryApi";
-import { serverTimestamp } from "firebase/firestore";
-import type { NextApiRequest, NextApiResponse } from "next";
 import admin from "firebase-admin";
+import type { NextApiRequest, NextApiResponse } from "next";
 import { adminDb } from "../../../firebaseAdmin";
 
 type Data = {
