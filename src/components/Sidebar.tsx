@@ -8,6 +8,7 @@ import { useCollection } from "react-firebase-hooks/firestore";
 import { collection, orderBy, query } from "firebase/firestore";
 import { db } from "../../firebase";
 import ChatRow from "./ChatRow";
+import ModelSelection from "./ModelSelection";
 
 interface SidebarProps {}
 
@@ -26,7 +27,9 @@ const Sidebar: FC<SidebarProps> = ({}) => {
       <div className='flex-1 '>
         <div>
           <NewChat />
-
+          <div className='hidden sd:inline'>
+            <ModelSelection />
+          </div>
           {chats?.docs.map((chat) => (
             <ChatRow key={chat.id} id={chat.id} />
           ))}
