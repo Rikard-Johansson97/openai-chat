@@ -16,6 +16,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   }
 
   const response = await query(prompt, chatId, model);
+
+  const message: Message = {
+    text: response || "Chat GPT was unable to find an answer for that",
+  };
 };
 
 export default handler;
