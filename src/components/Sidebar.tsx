@@ -21,8 +21,6 @@ const Sidebar: FC<SidebarProps> = ({}) => {
       )
   );
 
-  console.log(session);
-
   return (
     <div className='flex flex-col h-screen p-2'>
       <div className='flex-1 '>
