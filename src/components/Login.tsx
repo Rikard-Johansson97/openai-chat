@@ -1,4 +1,5 @@
 "use client";
+import { ArrowRightOnRectangleIcon } from "@heroicons/react/24/outline";
 import { signIn, signOut } from "next-auth/react";
 import Image from "next/image";
 
@@ -16,9 +17,10 @@ const Login: FC<LoginProps> = ({}) => {
         alt='logo'
       />
       <button
-        className='text-white font-bold text-3xl animate-pulse'
+        className='text-white font-bold text-3xl animate-pulse flex items-center justify-center gap-2 hover:animate-none'
         onClick={() => signIn("google")}>
-        Sign in to use chatGPT
+        <ArrowRightOnRectangleIcon className='w-10 h-10' />
+        Click to Sign in
       </button>
     </div>
   );

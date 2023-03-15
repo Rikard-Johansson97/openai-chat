@@ -9,6 +9,7 @@ import { collection, orderBy, query } from "firebase/firestore";
 import { db } from "../../firebase";
 import ChatRow from "./ChatRow";
 import ModelSelection from "./ModelSelection";
+import { ArrowLeftOnRectangleIcon } from "@heroicons/react/24/solid";
 
 interface SidebarProps {}
 
@@ -27,22 +28,36 @@ const Sidebar: FC<SidebarProps> = ({}) => {
       <div className='flex-1 '>
         <div>
           <NewChat />
-          <div className='hidden sd:inline'>
+          <div className='hidden sm:inline'>
             <ModelSelection />
           </div>
-          {chats?.docs.map((chat) => (
-            <ChatRow key={chat.id} id={chat.id} />
-          ))}
+          <div className='flex flex-col space-y-2 my-2'>
+            {loading && (
+              <div className='animate-pulse text-center text-white'>
+                <p>Loading Chats...</p>
+              </div>
+            )}
+            {chats?.docs.map((chat) => (
+              <ChatRow key={chat.id} id={chat.id} />
+            ))}
+          </div>
         </div>
       </div>
-      {session && (
-        <img
-          onClick={() => signOut()}
-          src={session.user?.image!}
-          alt='user image'
-          className='h-12 w-12 rounded-full cursor-pointer mx-auto mb-2 hover:opacity-50'
-        />
-      )}
+      <div className='flex justify-between items-center p-4'>
+        {session && (
+          <img
+            src={session.user?.image!}
+            alt='user image'
+            className='h-12 w-12 rounded-full duration-200'
+          />
+        )}
+        <div
+          className='text-white flex items-center gap-1 cursor-pointer duration-200 opacity-75 hover:opacity-100'
+          onClick={() => signOut()}>
+          <p>Logout</p>
+          <ArrowLeftOnRectangleIcon className='h-6 w-6 ' />
+        </div>
+      </div>
     </div>
   );
 };

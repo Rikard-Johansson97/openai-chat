@@ -5,7 +5,7 @@ import useSWR from "swr";
 interface ModelSelectionProps {}
 
 const ModelSelection: FC<ModelSelectionProps> = ({}) => {
-  const fetchModels = () => fetch("/api/getEngines");
+  const fetchModels = () => fetch("/api/getEngines").then((res) => res.json());
 
   const { data: models, isLoading } = useSWR("models", fetchModels);
   const { data: model, mutate: setModel } = useSWR("model", {
@@ -17,6 +17,8 @@ const ModelSelection: FC<ModelSelectionProps> = ({}) => {
       <Select
         options={models?.modelOptions}
         className='mt-2'
+        defaultValue={model}
+        placeholder={model}
         isSearchable
         isLoading={isLoading}
         menuPosition='fixed'
